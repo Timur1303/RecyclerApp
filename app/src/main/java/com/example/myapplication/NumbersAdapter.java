@@ -46,8 +46,8 @@ public class NumbersAdapter extends RecyclerView.Adapter<NumbersAdapter.NumberVi
         public NumberViewHolder(View itemView){
             super(itemView);
 
-            tv_id = itemView.findViewById(R.id.tv_id);
             tv_name = itemView.findViewById(R.id.tv_name);
+            tv_id = itemView.findViewById(R.id.tv_id);
             tv_volume = itemView.findViewById(R.id.tv_volume);
         }
     }

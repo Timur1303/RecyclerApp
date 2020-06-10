@@ -10,6 +10,8 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -40,8 +42,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadJSON() {
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(interceptor)
+                .build();
+
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.punkapi.com/")
+                .baseUrl("https://api.punkapi.com/v2/beers")
+                .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
